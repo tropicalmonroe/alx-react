@@ -52,19 +52,6 @@ class App extends Component {
     }
   }
 
-  logIn(email, password) {
-    this.setState({
-      user: {
-	email,
-	password,
-	isLoggedIn: true,
-      },
-    });
-  }
-
-  logout() {
-    this.setState({ user });
-  }
 
   markNotificationAsRead(id) {
     this.setState ({
@@ -203,6 +190,8 @@ export const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   displayNotificationDrawer,
   hideNotificationDrawer,
+  login: loginRequest,
+  logout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
