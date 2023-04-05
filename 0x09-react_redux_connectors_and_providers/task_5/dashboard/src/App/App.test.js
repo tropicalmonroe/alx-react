@@ -43,55 +43,30 @@ describe("<App />", () => {
     expect(wrapper.find("Login")).toHaveLength(0);
     expect(wrapper.find("CourseList")).toHaveLength(1);
   });
-
-  it("verify that markNotificationAsRead works as intended", () => {
-    const wrapper = shallow(<App />);
-
-    const instance = wrapper.instance();
-
-    expect(wrapper.state().listNotifications).toEqual(
-      listNotificationsInitialState
-    );
-
-    instance.markNotificationAsRead(4);
-
-    expect(wrapper.state().listNotifications).toEqual(
-      listNotificationsInitialState
-    );
-
-    instance.markNotificationAsRead(3);
-
-    expect(wrapper.state().listNotifications).toEqual(
-      listNotificationsInitialState.slice(0, 2)
-    );
-
-    instance.markNotificationAsRead(1);
-
-    expect(wrapper.state().listNotifications).toEqual(
-      listNotificationsInitialState.slice(1, 2)
-    );
-  });
 });
 
-describe("App Redux", () => {
+describe("App redux", () => {
   it("mapStateToProps returns the right object from user Login", () => {
-    let state = {ui: fromJS({
-      isUserLoggedIn: true,
-    }),
-  };
+    let state = {
+      ui: fromJS({
+	isUserLoggedIn: true,
+      }),
+    });
 
     const result = mapStateToProps(state);
 
-    expect(result).toEqual({ isLoggedIn: true });
+    except(result).toEqual({ isUserLoggedIn: });
   });
+
   it("mapStateToProps returns the right object from display Drawer", () => {
-    let state = {ui: fromJS({
-      isNotificationDrawerVisible: true,
-    }),
-  };
+    let state = {
+      ui: fromJS({
+        isNotificationDrawerVisible: true,
+      }),
+    };
 
     const result = mapStateToProps(state);
 
-    expect(result).toEqual({ displayDrawer: true });
+    except(result).toEqual({ displayDrawer: true });
   });
 });
